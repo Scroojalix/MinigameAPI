@@ -1,0 +1,23 @@
+author: ${author}
+version: ${revision}
+main: io.github.scroojalix.minigameapi.Main
+name: MinigameAPI
+api-version: 1.13
+permission-message: &noperms "\u00A7cYou do not have permission to use this command."
+depend: [PlaceholderAPI]
+
+commands:
+  listminigames:
+    permission: minigameapi.list
+    permission-message: *noperms
+  startminigame:
+    permission: minigameapi.start
+    permission-message: *noperms
+    
+permissions:
+  minigameapi.list:
+    default: op
+    description: allows use of listminigames command.
+  minigameapi.start:
+    default: op
+    description: allows use of startminigame command.

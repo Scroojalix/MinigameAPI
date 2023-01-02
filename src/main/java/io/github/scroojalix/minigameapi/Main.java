@@ -9,9 +9,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import io.github.scroojalix.countdownapi.CountdownAPI;
-import io.github.scroojalix.countdownapi.StyleBuilder;
-
 public class Main extends JavaPlugin {
 
     @Override
@@ -41,12 +38,7 @@ public class Main extends JavaPlugin {
                 if (registeredMinigame != null) {
                     Minigame minigame = registeredMinigame.getMinigame();
                     if (!minigame.isRunning()) {
-                        CountdownAPI.startCountdown(this, 10, 
-                            new StyleBuilder().setTitleFormat("&6Minigame starting in").create(),
-                            () -> {
-                                minigame.start();
-                            }
-                        );
+                        minigame.start();
                     } else {
                         minigame.end();
                     }

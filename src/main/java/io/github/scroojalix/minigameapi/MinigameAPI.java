@@ -22,17 +22,33 @@ public class MinigameAPI {
 
     public static void registerMinigame(String name, Minigame minigame, Plugin plugin) {
         if (!plugin.isEnabled())
-            throw new IllegalPluginAccessException(plugin.getName()+" attempted to register minigame "+name+ " whilst not enabled");
+            throw new IllegalPluginAccessException(plugin.getName() + " attempted to register minigame " + name + " whilst not enabled");
         if (name.contains(" ")) {
             name = name.replace(" ", "");
-            instance.getLogger().warning("Minigame names may not contain spaces. Defaulted to "+name);
+            instance.getLogger().warning("Minigame names may not contain spaces. Defaulted to " + name);
         }
-        if (getMinigame(name) != null) {
-            throw new IllegalArgumentException(name+" is already a registered minigame name.");
-        }
+        if (getMinigame(name) != null)
+            throw new IllegalArgumentException(name + " is already a registered minigame name.");
+
         registeredMinigames.add(new RegisteredMinigame(name, minigame, plugin));
     }
-    
+
+    public static void initMinigame(String registeredName) {
+        RegisteredMinigame minigame = getMinigame(registeredName);
+        if (minigame == null)
+            throw new IllegalArgumentException(registeredName + " is not a valid minigame.");
+
+        minigame.init();
+    }
+
+    public static void startMinigame(String registeredName) {
+        RegisteredMinigame minigame = getMinigame(registeredName);
+        if (minigame == null)
+            throw new IllegalArgumentException(registeredName + " is not a valid minigame.");
+
+        minigame.start();
+    }
+
     public static String[] getMinigameNames() {
         return registeredMinigames.stream().map(RegisteredMinigame::getName).toArray(String[]::new);
     }

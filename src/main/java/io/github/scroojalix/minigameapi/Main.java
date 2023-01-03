@@ -36,11 +36,10 @@ public class Main extends JavaPlugin {
             if (args.length > 0) {
                 RegisteredMinigame registeredMinigame = MinigameAPI.getMinigame(args[0]);
                 if (registeredMinigame != null) {
-                    Minigame minigame = registeredMinigame.getMinigame();
-                    if (!minigame.isRunning()) {
-                        minigame.start();
+                    if (!registeredMinigame.isRunning()) {
+                        registeredMinigame.start();
                     } else {
-                        minigame.end();
+                        registeredMinigame.end();
                     }
                 } else {
                     sender.sendMessage(ChatColor.RED+"That minigame does not exist.");

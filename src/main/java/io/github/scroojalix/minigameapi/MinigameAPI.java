@@ -22,13 +22,14 @@ public class MinigameAPI {
 
     public static void registerMinigame(String name, Minigame minigame, Plugin plugin) {
         if (!plugin.isEnabled())
-            throw new IllegalPluginAccessException(plugin.getName() + " attempted to register minigame " + name + " whilst not enabled");
+            throw new IllegalPluginAccessException(
+                    plugin.getName() + " attempted to register minigame " + name + " whilst not enabled");
         if (name.contains(" ")) {
             name = name.replace(" ", "");
             instance.getLogger().warning("Minigame names may not contain spaces. Defaulted to " + name);
         }
         if (getMinigame(name) != null)
-            throw new IllegalArgumentException(name + " is already a registered minigame name.");
+            throw new MinigameException(name + " is already a registered minigame name.");
 
         registeredMinigames.add(new RegisteredMinigame(name, minigame, plugin));
     }
@@ -36,7 +37,7 @@ public class MinigameAPI {
     public static void initMinigame(String registeredName) {
         RegisteredMinigame minigame = getMinigame(registeredName);
         if (minigame == null)
-            throw new IllegalArgumentException(registeredName + " is not a valid minigame.");
+            throw new MinigameException(registeredName + " is not a valid minigame.");
 
         minigame.init();
     }
@@ -44,7 +45,7 @@ public class MinigameAPI {
     public static void startMinigame(String registeredName) {
         RegisteredMinigame minigame = getMinigame(registeredName);
         if (minigame == null)
-            throw new IllegalArgumentException(registeredName + " is not a valid minigame.");
+            throw new MinigameException(registeredName + " is not a valid minigame.");
 
         minigame.start();
     }
@@ -54,7 +55,8 @@ public class MinigameAPI {
     }
 
     public static @Nullable RegisteredMinigame getMinigame(@Nonnull String name) {
-        Optional<RegisteredMinigame> matchingObject = registeredMinigames.stream().filter(m -> m.getName().equals(name)).findFirst();
+        Optional<RegisteredMinigame> matchingObject = registeredMinigames.stream().filter(m -> m.getName().equals(name))
+                .findFirst();
         return matchingObject.orElse(null);
     }
 }

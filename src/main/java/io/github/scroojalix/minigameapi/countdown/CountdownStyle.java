@@ -2,7 +2,7 @@ package io.github.scroojalix.minigameapi.countdown;
 
 import org.bukkit.Sound;
 
-public class Style {
+public class CountdownStyle {
     // TODO add extra effects such as sfx, action bar, xp bar etc.
 
     private String titleFormat;
@@ -11,25 +11,25 @@ public class Style {
     int fadeIn, stay, fadeOut, wait;
     
     private SoundInfo soundInfo;
-    private Style finalTickStyle;
+    private CountdownStyle finalTickStyle;
 
-    public Style() {
+    public CountdownStyle() {
         this(null, null, 0, 0, 0, 0, null);
     }
 
-    public Style(String titleFormat, String subtitleFormat, int fadeIn, int stay, int fadeOut) {
+    public CountdownStyle(String titleFormat, String subtitleFormat, int fadeIn, int stay, int fadeOut) {
         this(titleFormat, subtitleFormat, fadeIn, stay, fadeOut, 0, null);
     }
 
-    public Style(String titleFormat, String subtitleFormat, int fadeIn, int stay, int fadeOut, int wait) {
+    public CountdownStyle(String titleFormat, String subtitleFormat, int fadeIn, int stay, int fadeOut, int wait) {
         this(titleFormat, subtitleFormat, fadeIn, stay, fadeOut, 0, null);
     }
 
-    public Style(String titleFormat, String subtitleFormat, int fadeIn, int stay, int fadeOut, Style finalTickStyle) {
+    public CountdownStyle(String titleFormat, String subtitleFormat, int fadeIn, int stay, int fadeOut, CountdownStyle finalTickStyle) {
         this(titleFormat, subtitleFormat, fadeIn, stay, fadeOut, 0, finalTickStyle);
     }
 
-    public Style(String titleFormat, String subtitleFormat, int fadeIn, int stay, int fadeOut, int wait, Style finalTickStyle) {
+    public CountdownStyle(String titleFormat, String subtitleFormat, int fadeIn, int stay, int fadeOut, int wait, CountdownStyle finalTickStyle) {
         this.titleFormat = titleFormat;
         this.subtitleFormat = subtitleFormat;
         this.fadeIn = fadeIn;
@@ -88,11 +88,11 @@ public class Style {
             this.soundInfo = new SoundInfo(sound, volume, pitch);
     }
 
-    public Style getFinalTickStyle() {
+    public CountdownStyle getFinalTickStyle() {
         return this.finalTickStyle;
     }
 
-    public void setFinalTickStyle(Style finalTickStyle) {
+    public void setFinalTickStyle(CountdownStyle finalTickStyle) {
         this.finalTickStyle = finalTickStyle;
     }
 

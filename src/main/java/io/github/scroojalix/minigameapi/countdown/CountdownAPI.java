@@ -13,14 +13,14 @@ public final class CountdownAPI {
     public static boolean PLACEHOLDER_API_ENABLED = true;
 
     public static int startCountdown(Plugin plugin, int length) {
-        return startCountdown(plugin, length, StyleBuilder.getDefaults().create(), () -> {});
+        return startCountdown(plugin, length, CountdownStyleBuilder.getDefaults().create(), () -> {});
     }
 
-    public static int startCountdown(Plugin plugin, int length, Style style) {
+    public static int startCountdown(Plugin plugin, int length, CountdownStyle style) {
         return startCountdown(plugin, length, style, () -> {});
     }
 
-    public static int startCountdown(Plugin plugin, int length, Style style, CountdownInterfacer interfacer) {
+    public static int startCountdown(Plugin plugin, int length, CountdownStyle style, CountdownInterfacer interfacer) {
         CountdownHandler task = new CountdownHandler(length, style, interfacer);
         return task.start(plugin);
     }

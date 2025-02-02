@@ -11,28 +11,28 @@ public class CountdownHandler implements Runnable {
 
     private int taskId;
     private int count;
-    private Style style;
+    private CountdownStyle style;
     private CountdownInterfacer interfacer;
 
     
     public CountdownHandler(int countdownLength, CountdownInterfacer interfacer) {
-        this(countdownLength, StyleBuilder.getDefaults().create(), interfacer);
+        this(countdownLength, CountdownStyleBuilder.getDefaults().create(), interfacer);
     }
     
-    public CountdownHandler(int countdownLength, Style style, CountdownInterfacer interfacer) {
+    public CountdownHandler(int countdownLength, CountdownStyle style, CountdownInterfacer interfacer) {
         this.count = countdownLength;
         this.style = style;
         this.interfacer = interfacer;
     }
     
     /** Called each second of the countdown */
-    void tick(Style style) {
+    void tick(CountdownStyle style) {
         if (style.getTotalTickLength() <= 0) {
             Bukkit.getLogger().warning("A countdown with no tick length attempted to be called. Consider adjusting the countdowns fadeIn, stay and fadeOut values");
         }
         interfacer.tick();
 
-        Style.SoundInfo soundInfo = style.getSoundInfo();
+        CountdownStyle.SoundInfo soundInfo = style.getSoundInfo();
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.sendTitle(formatCountdown(p, style.getTitleFormat()), formatCountdown(p, style.getSubtitleFormat()), style.fadeIn, style.stay, style.fadeOut);
             

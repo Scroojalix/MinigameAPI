@@ -1,10 +1,10 @@
 author: ${author}
-version: ${revision}
+version: ${project.version}
 main: io.github.scroojalix.minigameapi.Main
 name: MinigameAPI
 api-version: 1.13
 permission-message: &noperms "\u00A7cYou do not have permission to use this command."
-depend: [PlaceholderAPI]
+softdepend: [PlaceholderAPI]
 
 commands:
   listminigames:
@@ -13,6 +13,8 @@ commands:
   startminigame:
     permission: minigameapi.start
     permission-message: *noperms
+  testcount:
+    description: "Test Counter"
     
 permissions:
   minigameapi.list:

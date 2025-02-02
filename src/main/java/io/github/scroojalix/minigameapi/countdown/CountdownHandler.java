@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-//import me.clip.placeholderapi.PlaceholderAPI;
+import io.github.scroojalix.minigameapi.utils.PAPILinker;
 
 public class CountdownHandler implements Runnable {
 
@@ -34,7 +34,7 @@ public class CountdownHandler implements Runnable {
 
         Style.SoundInfo soundInfo = style.getSoundInfo();
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.sendTitle(formatCountdown(style.getTitleFormat()), formatCountdown(style.getSubtitleFormat()), style.fadeIn, style.stay, style.fadeOut);
+            p.sendTitle(formatCountdown(p, style.getTitleFormat()), formatCountdown(p, style.getSubtitleFormat()), style.fadeIn, style.stay, style.fadeOut);
             
             if (soundInfo != null)
                 p.playSound(p.getLocation(), soundInfo.sound, soundInfo.volume, soundInfo.pitch);
@@ -72,12 +72,15 @@ public class CountdownHandler implements Runnable {
         return count;
     }
 
-    private String formatCountdown(String in) {
+    private String formatCountdown(Player reciever, String in) {
         if (in == null)
             return null;
         String out = in.replace("%count%", getCount()+"");
-        // TODO: make PlaceholderAPI Optional
-        //out = PlaceholderAPI.setPlaceholders(reciever, out);
+        
+        if (CountdownAPI.PLACEHOLDER_API_ENABLED) {
+            out = PAPILinker.setPlaceholders(reciever, out);
+        }
+
         return ChatColor.translateAlternateColorCodes('&', out);
     }
 }

@@ -20,12 +20,14 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        this.getLogger().info("Initialising MinigameAPI...");
-    }
-
-    @Override
-    public void onDisable() {
-        this.getLogger().info("Disabling MinigameAPI...");
+        try {
+            Class.forName("me.clip.placeholderapi.PlaceholderAPI");
+            CountdownAPI.PLACEHOLDER_API_ENABLED = true;
+            this.getLogger().info("PlaceholderAPI located.");
+        } catch (ClassNotFoundException e) {
+            CountdownAPI.PLACEHOLDER_API_ENABLED = false;
+            this.getLogger().warning("PlaceholderAPI not installed");
+        }
     }
 
     @Override

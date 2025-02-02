@@ -14,9 +14,17 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.target>
+      1.8</maven.compiler.target>
     <author>Scroojalix</author>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>spigot-repo</id>
+      <url>https://repo.codemc.io/repository/nms/</url>
+    </repository>
+  </repositories>
 
   <dependencies>
     <dependency>
@@ -24,11 +32,6 @@
       <artifactId>spigot</artifactId>
       <version>1.17-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.github.scroojalix</groupId>
-      <artifactId>countdownapi</artifactId>
-      <version>1.3</version>
     </dependency>
   </dependencies>
 
@@ -47,7 +50,8 @@
         <configuration>
           <archive>
             <manifest>
-              <addDefaultImplementationEntries>false</addDefaultImplementationEntries>
+              <addDefaultImplementationEntries>
+                false</addDefaultImplementationEntries>
               <addDefaultSpecificationEntries>false</addDefaultSpecificationEntries>
             </manifest>
           </archive>
@@ -58,7 +62,8 @@
         <artifactId>maven-shade-plugin</artifactId>
         <version>2.4.1</version>
         <configuration>
-		  <createDependencyReducedPom>false</createDependencyReducedPom>
+		  <createDependencyReducedPom>
+            false</createDependencyReducedPom>
           <shadedArtifactAttached>false</shadedArtifactAttached>
           <outputDirectory>./target/temp-jar</outputDirectory>
         </configuration>
@@ -67,24 +72,25 @@
                 <phase>package</phase>
                 <goals>
                     <goal>shade</goal>
-                </goals>
+            </goals>
                 <configuration>
                   <artifactSet>
                       <includes>
-                          <include>${project.groupId}:${project.artifactId}</include>
-                          <include>${project.groupId}:countdownapi</include>
-                      </includes>
-                  </artifactSet>
+                          <include>
+                    ${project.groupId}:${project.artifactId}</include>
+                </includes>
+              </artifactSet>
                   <filters>
                       <filter>
-                          <artifact>*:*</artifact>
+                          <artifact>
+                    *:*</artifact>
                           <excludes>
                               <exclude>META-INF/maven/</exclude>
-                          </excludes>
-                      </filter>
-                  </filters>
-                </configuration>
-            </execution>
+                  </excludes>
+                </filter>
+              </filters>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
     </plugins>

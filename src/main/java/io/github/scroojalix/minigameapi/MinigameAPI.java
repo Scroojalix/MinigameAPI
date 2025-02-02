@@ -3,6 +3,7 @@ package io.github.scroojalix.minigameapi;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -14,7 +15,7 @@ public class MinigameAPI {
 
     protected static Main instance;
 
-    private static Set<RegisteredMinigame> registeredMinigames = new HashSet<RegisteredMinigame>();
+    private static final Set<RegisteredMinigame> registeredMinigames = new HashSet<>();
 
     public static Set<RegisteredMinigame> getRegisteredMinigames() {
         return registeredMinigames;
@@ -26,7 +27,7 @@ public class MinigameAPI {
                     plugin.getName() + " attempted to register minigame " + name + " whilst not enabled");
         if (name.contains(" ")) {
             name = name.replace(" ", "");
-            instance.getLogger().warning("Minigame names may not contain spaces. Defaulted to " + name);
+            instance.getLogger().log(Level.WARNING, "Minigame names may not contain spaces. Defaulted to {0}", name);
         }
         if (getMinigame(name) != null)
             throw new MinigameException(name + " is already a registered minigame name.");

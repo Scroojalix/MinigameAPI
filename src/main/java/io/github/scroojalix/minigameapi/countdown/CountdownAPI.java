@@ -8,17 +8,9 @@ import org.bukkit.plugin.Plugin;
 public final class CountdownAPI {
 
     static Map<Integer, CountdownHandler> runningCountdowns = new HashMap<>();
-    
-    // TODO finish this. Make placeholderapi optional
-    // static boolean PLACEHOLDER_API_ENABLED = true;
 
-    // static {
-    //     try {
-    //         Class.forName("me.clip.placeholderapi.PlaceholderAPI");
-    //     } catch (ClassNotFoundException e) {
-    //         PLACEHOLDER_API_ENABLED = false;
-    //     }
-    // }
+    // TODO find better place for this
+    public static boolean PLACEHOLDER_API_ENABLED = true;
 
     public static int startCountdown(Plugin plugin, int length) {
         return startCountdown(plugin, length, StyleBuilder.getDefaults().create(), () -> {});

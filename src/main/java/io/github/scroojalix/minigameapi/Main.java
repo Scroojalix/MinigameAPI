@@ -57,6 +57,6 @@ public class Main extends JavaPlugin {
                 return Arrays.asList(MinigameAPI.getMinigameNames());
             }
         }
-        return new ArrayList<String>();
+        return new ArrayList<>();
     }
 }

@@ -14,7 +14,7 @@ commands:
     permission: minigameapi.start
     permission-message: *noperms
   testcount:
-    usage: "Test Counter"
+    description: "Test Counter"
     
 permissions:
   minigameapi.list:

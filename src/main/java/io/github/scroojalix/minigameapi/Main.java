@@ -51,9 +51,6 @@ public class Main extends JavaPlugin {
             }
             
         }
-        else if (command.getLabel().equalsIgnoreCase("testcount")) {
-            CountdownAPI.startCountdown(this, 10);
-        }
         return true;
     }
 

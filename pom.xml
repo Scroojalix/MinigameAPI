@@ -18,6 +18,14 @@
         <author>Scroojalix</author>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Scroojalix Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/Scroojalix/MinigameAPI</url>
+        </repository>
+    </distributionManagement>
+
     <repositories>
         <repository>
             <id>placeholderapi</id>

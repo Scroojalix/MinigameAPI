@@ -58,6 +58,11 @@ public class CountdownStyleBuilder {
         return this;
     }
 
+    public CountdownStyleBuilder setEarlyCancelStyle(CountdownStyle earlyCancelStyle) {
+        style.setEarlyCancelStyle(earlyCancelStyle);
+        return this;
+    }
+
     public CountdownStyleBuilder setFinalTickStyle(CountdownStyle finalTickStyle) {
         style.setFinalTickStyle(finalTickStyle);
         return this;

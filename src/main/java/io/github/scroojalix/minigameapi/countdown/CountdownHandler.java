@@ -13,7 +13,6 @@ public class CountdownHandler implements Runnable {
     private int count;
     private CountdownStyle style;
     private CountdownInterfacer interfacer;
-
     
     public CountdownHandler(int countdownLength, CountdownInterfacer interfacer) {
         this(countdownLength, CountdownStyleBuilder.getDefaults().create(), interfacer);
@@ -55,7 +54,7 @@ public class CountdownHandler implements Runnable {
             if (style.getFinalTickStyle() != null) {
                 tick(style.getFinalTickStyle());
             }
-            cancel();
+            removeCountdownTask();
             interfacer.callback();
         }
         count--;
@@ -63,6 +62,14 @@ public class CountdownHandler implements Runnable {
 
     /** Call to cancel the countdown */
     public void cancel() {
+        if (style.getEarlyCancelStyle() != null) {
+            tick(style.getEarlyCancelStyle());
+        }
+        removeCountdownTask();
+    }
+
+    private void removeCountdownTask() {
+
         Bukkit.getScheduler().cancelTask(taskId);
         CountdownAPI.runningCountdowns.remove(taskId);
     }
